@@ -22,7 +22,7 @@ app.get("/", (req,res)=>{
     var data = (await pool.query("select * from data")).rows;
       console.log(data)
       res.render("index", {data});
-  })()
+  }).catch(err =>{onmouseleave.log(err)})();
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
