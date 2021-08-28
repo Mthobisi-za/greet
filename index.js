@@ -18,13 +18,15 @@ app.set("view engine", "handlebars");
 const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
-  res.render("index")
+  var data = database.getData();
+  res.render("index", {data});
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
   var age = req.body.age;
   var grade = req.body.grade;
-
+  database.setData(name, age, grade);
+  res.redirect("/");
 })
 let PORT = process.env.PORT || 3009;
 app.listen(PORT, ()=>{

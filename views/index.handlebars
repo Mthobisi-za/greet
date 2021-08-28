@@ -2,12 +2,14 @@
 
     <table>
         <th>List of students in class</th>
-        <tr>
-
-        </tr>
+        {{#each data}}
+            <tr>
+                <th>{{data.name}}</th> <th>{{data.grade}}</th> <th>{{data.age}}</th>
+            </tr>
+        {{/each}}
     </table>
 
-    <form action="  practice" method="post">
+    <form action="/signUser" method="post">
         <h2>Sign Up Student</h2>
         <br>
         <label for="name">Name :</label> <input type="text" name="name" id="name"> <br> <br>
