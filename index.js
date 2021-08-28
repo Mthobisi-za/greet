@@ -15,20 +15,25 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 ////used var
+async function getData() {
+  console.log("i was clled")
+  var promise = new Promise((resolve, reject)=>{
+    resolve(pool.query('select * from data'))
+  })
+  .then(value =>{
+    console.log(value.rows)
+  }).catch(err =>{
+    console.log(err)
+  })
+  return promise.rows
+}
+
+
+
+
 const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
-  async function getData() {
-    var promise = new Promise((resolve, reject)=>{
-      resolve(pool.query('select * from data'))
-    })
-    .then(value =>{
-      console.log(value)
-    }).catch(err =>{
-      console.log(err)
-    })
-    return promise
-  }
   getData();
   res.render('index')
 })
