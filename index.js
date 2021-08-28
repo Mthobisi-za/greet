@@ -31,9 +31,20 @@ async function getData() {
 const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
-  var data = database.getData();
-  data
-  res.render('index', data)
+  async function getData(){
+    console.log("Getting data")
+    var promise = new Promise((resolve, reject)=>{
+      resolve(pool.query('select * from data'))
+    })
+    .then(value =>{
+      res.render('index', {data: value.rows})
+      
+    }).catch(err =>{
+      console.log(err)
+    })
+    console.log(promise)
+ }
+ getData()
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
