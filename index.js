@@ -29,7 +29,8 @@ app.get("/", (req,res)=>{
     })
     return promise
   }
-  getData()
+  getData();
+  res.render('index')
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
