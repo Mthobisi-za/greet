@@ -2,7 +2,7 @@ let express = require("express");
 let app = express();
 const {Pool} = require("pg");
 var connectionString = process.env.DATABASE_URL;
-const pool = new Pool({connectionString, ssl: true})
+const pool = new Pool({connectionString, ssl: {rejectUnauthorized: false}})
 var exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 app.use(express.static("public"));
