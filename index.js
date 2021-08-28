@@ -28,14 +28,12 @@ async function getData() {
   return promise.rows
 }
 
-
-
-
 const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
-  getData();
-  res.render('index')
+  var data = database.getData();
+  data
+  res.render('index', data)
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
