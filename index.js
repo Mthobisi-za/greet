@@ -24,6 +24,7 @@ app.get("/", (req,res)=>{
       console.log(data.rows);
       res.render('index')
     })
+    .catch(err => console.log(err))
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
