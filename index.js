@@ -19,6 +19,7 @@ const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
   var data = database.getData();
+  console.log(data)
   res.render("index", {data});
 })
 app.post('/signUser', (req,res)=>{
