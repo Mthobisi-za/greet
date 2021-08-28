@@ -18,13 +18,18 @@ app.set("view engine", "handlebars");
 const data = require("./dbLogic");
 const database = data(pool);
 app.get("/", (req,res)=>{
-  pool
-    .query("select * from data")
-    .then(data =>{
-      console.log(data.rows);
-      res.render('index')
+  async function getData() {
+    var promise = new Promise((resolve, reject)=>{
+      resolve(pool.query('select * from data'))
     })
-    .catch(err => console.log(err))
+    .then(value =>{
+      console.log(value)
+    }).catch(err =>{
+      console.log(err)
+    })
+    return promise
+  }
+  getData()
 })
 app.post('/signUser', (req,res)=>{
   var name = req.body.name;
