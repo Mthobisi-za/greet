@@ -53,7 +53,7 @@ app.post('/signUser', (req,res)=>{
   async function setData(){
     console.log("Getting data")
     var promise = new Promise((resolve, reject)=>{
-      resolve(pool.query('pool.query("insert into data(name,grade,age) values($1,$2,$3)', [name,grade,age]))
+      resolve(pool.query('insert into data(name,grade,age) values($1,$2,$3)', [name,grade,age]))
     })
     .then(value =>{
       res.redirect('/')
