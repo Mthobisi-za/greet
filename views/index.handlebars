@@ -4,7 +4,7 @@
         <th>List of students in class</th>
         {{#each data}}
             <tr>
-                <th>{{data.name}}</th> <th>{{data.grade}}</th> <th>{{data.age}}</th>
+                <th>{{this.name}}</th> <th>{{this.grade}}</th> <th>{{this.age}}</th>
             </tr>
         {{/each}}
     </table>
